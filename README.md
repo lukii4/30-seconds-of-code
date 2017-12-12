@@ -53,7 +53,7 @@ Use `map()` to combine the letter with each partial anagram, then `reduce()` to 
 Base cases are for string `length` equal to `2` or `1`.
 
 ```js
-var anagrams = s => {
+const anagrams = s => {
   if(s.length <= 2)  return s.length === 2 ? [s, s[1] + s[0]] : [s];
   return s.split('').reduce( (a,l,i) => {
     anagrams(s.slice(0,i) + s.slice(i+1)).map( v => a.push(l+v) );
@@ -67,7 +67,7 @@ var anagrams = s => {
 Use `reduce()` to add each value to an accumulator, initialized with a value of `0`, divide by the `length` of the array.
 
 ```js
-var average = arr =>
+const average = arr =>
   arr.reduce( (acc , val) => acc + val, 0) / arr.length;
 ```
 
@@ -76,7 +76,7 @@ var average = arr =>
 Use `toUpperCase()` to capitalize first letter, `slice(1)` to get the rest of the string.
 
 ```js
-var capitalize = str => str[0].toUpperCase() + str.slice(1);
+const capitalize = str => str[0].toUpperCase() + str.slice(1);
 ```
 
 ### Count occurrences of a value in array
@@ -84,7 +84,7 @@ var capitalize = str => str[0].toUpperCase() + str.slice(1);
 Use `filter()` to create an array containing only the items with the specified value, count them using `length`.
 
 ```js
-var countOccurrences = (arr, value) => arr.filter(v => v === value).length;
+const countOccurrences = (arr, value) => arr.filter(v => v === value).length;
 ```
 
 ### Current URL
@@ -92,7 +92,7 @@ var countOccurrences = (arr, value) => arr.filter(v => v === value).length;
 Use `window.location.href` to get current URL.
 
 ```js
-var currentUrl = _ => window.location.href;
+const currentUrl = _ => window.location.href;
 ```
 
 ### Curry
@@ -102,7 +102,7 @@ If the number of provided arguments (`args`) is sufficient, call the passed func
 Otherwise return a curried function `f` that expects the rest of the arguments.
 
 ```js
-var curry = f =>
+const curry = f =>
   (...args) =>
     args.length >= f.length ? f(...args) : (...otherArgs) => curry(f)(...args, ...otherArgs)
 ```
@@ -112,7 +112,7 @@ var curry = f =>
 Use `filter()` to remove values that are part of `values`, determined using `indexOf()`.
 
 ```js
-var difference = (arr, values) =>
+const difference = (arr, values) =>
   arr.filter(v => values.indexOf(v) === -1);
 ```
 
@@ -121,7 +121,7 @@ var difference = (arr, values) =>
 Use `Math.pow()` and `Math.sqrt()` to calculate the Euclidean distance between two points.
 
 ```js
-var distance = x0, y0, x1, y1 =>
+const distance = x0, y0, x1, y1 =>
   Math.sqrt(Math.pow(x1-x0, 2) + Math.pow(y1 - y0, 2))
 ```
 
@@ -130,7 +130,7 @@ var distance = x0, y0, x1, y1 =>
 Use `replace()` to escape special characters.
 
 ```js
-var escapeRegExp = s =>
+const escapeRegExp = s =>
   s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 ```
@@ -141,7 +141,7 @@ Use `Math.abs()` to extend logic to negative numbers, check using the modulo (`%
 Return `true` if the number is even, `false` if the number is odd.
 
 ```js
-var isEven = num => Math.abs(num) % 2 === 0;
+const isEven = num => Math.abs(num) % 2 === 0;
 ```
 
 ### Factorial
@@ -149,7 +149,7 @@ var isEven = num => Math.abs(num) % 2 === 0;
 Create an array of length `n+1`, use `reduce()` to get the product of every value in the given range, utilizing the index of each element.
 
 ```js
-var factorial = n =>
+const factorial = n =>
   Array.apply(null, [1].concat(Array(n))).reduce( (a, _, i) => a * i || 1 , 1);
 ```
 
@@ -159,7 +159,7 @@ Create an empty array of the specific length, initializing the first two values 
 Use `reduce()` to add values into the array, using the sum of the last two values, except for the first two.
 
 ```js
-var fibonacci = n =>
+const fibonacci = n =>
   Array.apply(null, [0,1].concat(Array(n-2))).reduce(
     (acc, val, i) => {
       acc.push( i>1 ? acc[i-1]+acc[i-2] : val);
@@ -173,7 +173,7 @@ Use recursion.
 Use `reduce()` to get all elements that are not arrays, flatten each element that is an array.
 
 ```js
-var flatten = arr =>
+const flatten = arr =>
   arr.reduce( (a, v) => a.concat( Array.isArray(v) ? flatten(v) : v ), []);
 ```
 
@@ -184,7 +184,7 @@ Base case is when `y` equals `0`. In this case, return `x`.
 Otherwise, return the GCD of `y` and the remainder of the division `x/y`.
 
 ```js
-var gcd = (x , y) => !y ? x : gcd(y, x % y);
+const gcd = (x , y) => !y ? x : gcd(y, x % y);
 ```
 
 ### Head of list
@@ -192,7 +192,7 @@ var gcd = (x , y) => !y ? x : gcd(y, x % y);
 Return `arr[0]`.
 
 ```js
-var head = arr => arr[0];
+const head = arr => arr[0];
 ```
 
 ### Initial of list
@@ -200,7 +200,7 @@ var head = arr => arr[0];
 Return `arr.slice(0,-1)`.
 
 ```js
-var initial = arr => arr.slice(0,-1);
+const initial = arr => arr.slice(0,-1);
 ```
 
 ### Initialize array with range
@@ -209,7 +209,7 @@ Use `Array(end-start)` to create an array of the desired length, `map()` to fill
 You can omit `start` to use a default value of `0`.
 
 ```js
-var initializeArrayRange = (end, start = 0) =>
+const initializeArrayRange = (end, start = 0) =>
   Array.apply(null, Array(end-start)).map( (v,i) => i + start );
 ```
 
@@ -219,7 +219,7 @@ Use `Array(n)` to create an array of the desired length, `fill(v)` to fill it wi
 You can omit `v` to use a default value of `0`.
 
 ```js
-var initializeArray = (n, v = 0) =>
+const initializeArray = (n, v = 0) =>
   Array(n).fill(v);
 ```
 
@@ -228,7 +228,7 @@ var initializeArray = (n, v = 0) =>
 Return `arr.slice(-1)[0]`.
 
 ```js
-var initial = arr => arr.slice(-1)[0];
+const initial = arr => arr.slice(-1)[0];
 ```
 
 ### Measure time taken by function
@@ -237,8 +237,8 @@ Use `performance.now()` to get start and end time for the function, `console.log
 First argument is the function name, subsequent arguments are passed to the function.
 
 ```js
-var timeTaken = (f,...args) => {
-  var t0 = performance.now(), r = f(...args);
+const timeTaken = (f,...args) => {
+  const t0 = performance.now(), r = f(...args);
   console.log(performance.now() - t0);
   return r;
 }
@@ -249,7 +249,7 @@ var timeTaken = (f,...args) => {
 Use `map()` to create objects for each key-value pair, combine with `Object.assign()`.
 
 ```js
-var objectFromPairs = arr =>
+const objectFromPairs = arr =>
   Object.assign(...arr.map( v => {return {[v[0]] : v[1]};} ));
 ```
 
@@ -258,7 +258,7 @@ var objectFromPairs = arr =>
 Use `reduce()` combined with `map()` to iterate over elements and combine into an array containing all combinations. 
 
 ```js
-var powerset = arr =>
+const powerset = arr =>
   arr.reduce( (a,v) => a.concat(a.map( r => [v].concat(r) )), [[]]);
 ```
 
@@ -267,7 +267,7 @@ var powerset = arr =>
 Use `Math.random()` to generate a random value, map it to the desired range using multiplication.
 
 ```js
-var randomInRange = (min, max) => Math.random() * (max - min) + min;
+const randomInRange = (min, max) => Math.random() * (max - min) + min;
 ```
 
 ### Randomize order of array
@@ -275,7 +275,7 @@ var randomInRange = (min, max) => Math.random() * (max - min) + min;
 Use `sort()` to reorder elements, utilizing `Math.random()` to randomize the sorting.
 
 ```js
-var randomizeOrder = arr => arr.sort( (a,b) => Math.random() >= 0.5 ? -1 : 1)
+const randomizeOrder = arr => arr.sort( (a,b) => Math.random() >= 0.5 ? -1 : 1)
 ```
 
 ### Redirect to URL
@@ -284,7 +284,7 @@ Use `window.location.href` or `window.location.replace()` to redirect to `url`.
 Pass a second argument to simulate a link click (`true` - default) or an HTTP redirect (`false`).
 
 ```js
-var redirect = (url, asLink = true) =>
+const redirect = (url, asLink = true) =>
   asLink ? window.location.href = url : window.location.replace(url);
 ```
 
@@ -294,7 +294,7 @@ Convert each value to a hexadecimal string, using `toString(16)`, then `padStart
 Combine values using `join('')`.
 
 ```js
-var rgbToHex = (r, g, b) =>
+const rgbToHex = (r, g, b) =>
   [r,g,b].map( v => v.toString(16).padStart(2,'0')).join('');
 ```
 
@@ -304,8 +304,8 @@ Get distance from top using `document.documentElement.scrollTop` or `document.bo
 Scroll by a fraction of the distance from top. Use `window.requestFrame()` to animate the scrolling.
 
 ```js
-var scrollToTop = _ => {
-  var c = document.documentElement.scrollTop || document.body.scrollTop;
+const scrollToTop = _ => {
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
   if(c > 0) {
     window.requestAnimationFrame(scrollToTop);
     window.scrollTo(0, c - c/8);
@@ -318,7 +318,7 @@ var scrollToTop = _ => {
 Use `filter()` to remove values that are not part of `values`, determined using `indexOf()`.
 
 ```js
-var difference = (arr, values) =>
+const difference = (arr, values) =>
   arr.filter(v => values.indexOf(v) !== -1);
 ```
 
@@ -327,7 +327,7 @@ var difference = (arr, values) =>
 Split the string using `split('')`, `sort()` utilizing `localeCompare()`, recombine using `join('')`.
 
 ```js
-var sortCharactersInString = str =>
+const sortCharactersInString = str =>
   str.split('').sort( (a,b) => a.localeCompare(b) ).join('');
 ```
 
@@ -336,7 +336,7 @@ var sortCharactersInString = str =>
 Use `reduce()` to add each value to an accumulator, initialized with a value of `0`.
 
 ```js
-var sum = arr =>
+const sum = arr =>
   arr.reduce( (acc , val) => acc + val, 0);
 ```
 
@@ -345,7 +345,7 @@ var sum = arr =>
 Use array destructuring to swap values between two variables.
 
 ```js
-[varA, varB] = [varB, varA];
+[constA, constB] = [constB, constA];
 ```
 
 ### Tail of list
@@ -353,7 +353,7 @@ Use array destructuring to swap values between two variables.
 Return `arr.slice(1)`.
 
 ```js
-var tail = arr => arr.slice(1);
+const tail = arr => arr.slice(1);
 ```
 
 ### Unique values of array
@@ -362,7 +362,7 @@ Use `reduce()` to accumulate all unique values in an array.
 Check if each value has already been added, using `indexOf()` on the accumulator array.
 
 ```js
-var uniqueValues = arr =>
+const uniqueValues = arr =>
   arr.reduce( (acc, val) => {
     if(acc.indexOf(val) === -1)
       acc.push(val);
@@ -377,7 +377,7 @@ Combine all key-value pairs into a single object using `Object.assign()` and the
 Pass `location.search` as the argument to apply to the current `url`.
 
 ```js
-var getUrlParameters = url =>
+const getUrlParameters = url =>
   Object.assign(...url.match(/([^?=&]+)(=([^&]*))?/g).map(m => {[f,v] = m.split('='); return {[f]:v}}));
 ```
 
@@ -386,7 +386,7 @@ var getUrlParameters = url =>
 Use `crypto` API to generate a UUID, compliant with [RFC4122](https://www.ietf.org/rfc/rfc4122.txt) version 4.
 
 ```js
-var uuid = _ =>
+const uuid = _ =>
   ( [1e7]+-1e3+-4e3+-8e3+-1e11 ).replace( /[018]/g, c =>
     (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
   )
@@ -398,7 +398,7 @@ Use `!isNaN` in combination with `parseFloat()` to check if the argument is a nu
 Use `isFinite()` to check if the number is finite.
 
 ```js
-var validateNumber = n => !isNaN(parseFloat(n)) && isFinite(n);
+const validateNumber = n => !isNaN(parseFloat(n)) && isFinite(n);
 ```
 
 ## Credits
